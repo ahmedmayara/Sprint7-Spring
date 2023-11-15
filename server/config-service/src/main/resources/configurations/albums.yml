@@ -1,0 +1,20 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+spring:
+  application:
+    name: albums
+  datasource:
+    url: jdbc:mysql://localhost:3306/images-albums-DTO?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+server:
+  servlet:
+    context-path: /albums
+  port: 8090

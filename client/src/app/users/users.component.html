@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="mt-6">
+    <p-table
+      #dt2
+      styleClass="p-datatable-striped p-datatable-sm"
+      [value]="users"
+      [globalFilterFields]="['username']"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input
+              #inputElement2
+              pInputText
+              class="p-inputtext-sm"
+              type="text"
+              (input)="dt2.filterGlobal(inputElement2.value, 'contains')"
+              placeholder="Search users..."
+            />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>#</th>
+          <th>Username :</th>
+          <th>Roles :</th>
+          <th>Account status :</th>
+          <th colspan="2">Actions :</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-user>
+        <tr>
+          <td>{{ user.user_id }}</td>
+          <td>{{ user.username }}</td>
+          <td>
+            <span *ngFor="let role of user.roles">
+              <p-badge
+                [value]="role.role"
+                *ngIf="role.role === 'ADMIN'"
+                severity="warning"
+                [style]="{ color: 'white' }"
+              >
+              </p-badge>
+              <p-badge
+                [value]="role.role"
+                *ngIf="role.role === 'USER'"
+                severity="info"
+              >
+              </p-badge>
+            </span>
+          </td>
+          <td>
+            <p-badge
+              value="Active"
+              *ngIf="user.enabled === true"
+              severity="success"
+            >
+            </p-badge>
+            <p-badge
+              value="Disabled"
+              *ngIf="user.enabled === false"
+              severity="danger"
+            ></p-badge>
+          </td>
+          <td>
+            <p-button
+              severity="info"
+              *ngIf="authService.isAdmin()"
+              [routerLink]="['/add-role-to-user', user.user_id]"
+            >
+              <i class="pi pi-cog"></i>
+              <span class="ml-2"> Manage Roles </span>
+            </p-button>
+          </td>
+          <td>
+            <p-button
+              severity="danger"
+              *ngIf="authService.isAdmin()"
+              (click)="deleteUser(user)"
+            >
+              <i class="pi pi-trash"></i>
+              <span class="ml-2"> Delete </span>
+            </p-button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+          In total there are {{ users ? users.length : 0 }} users.
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

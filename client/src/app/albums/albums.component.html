@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="mt-6">
+    <p-table
+      #dt1
+      styleClass="p-datatable-striped p-datatable-sm"
+      [value]="albums"
+      [globalFilterFields]="['title', 'artist', 'genre']"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input
+              #inputElement
+              pInputText
+              class="p-inputtext-sm"
+              type="text"
+              (input)="dt1.filterGlobal(inputElement.value, 'contains')"
+              placeholder="Search keyword"
+            />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>#</th>
+          <th>Album Title :</th>
+          <th>Artist Name :</th>
+          <th>Release Date :</th>
+          <th>Genre :</th>
+          <th>Label :</th>
+          <th>Image :</th>
+          <th *ngIf="authService.isAdmin()">Edit :</th>
+          <th *ngIf="authService.isAdmin()">Delete :</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-album>
+        <tr>
+          <td>{{ album.idAlbum }}</td>
+          <td>{{ album.title }}</td>
+          <td>{{ album.artist }}</td>
+          <td>{{ album.releaseDate | date : "yyyy/MM/dd" }}</td>
+          <td>{{ album.genre }}</td>
+          <td>{{ album.label.labelName }}</td>
+          <td>
+            <img
+              class="img-fluid"
+              style="width: 100px"
+              src="{{ album.imageStr }}"
+            />
+          </td>
+          <td>
+            <p-button
+              *ngIf="authService.isAdmin()"
+              [routerLink]="['/updateAlbum', album.idAlbum]"
+            >
+              <i class="pi pi-pencil"></i>
+              <span class="ml-2"> Edit </span>
+            </p-button>
+          </td>
+          <td>
+            <p-button
+              severity="danger"
+              *ngIf="authService.isAdmin()"
+              (click)="deleteAlbum(album)"
+            >
+              <i class="pi pi-trash"></i>
+              <span class="ml-2"> Delete </span>
+            </p-button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+          In total there are {{ albums ? albums.length : 0 }} albums.
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

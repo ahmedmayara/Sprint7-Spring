@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Music Albums</title>
+  </head>
+
+  <body>
+    <nav
+      class="flex justify-content-between surface-700 h-4rem align-items-center px-6"
+      *ngIf="authService.getIsLoggedIn()"
+    >
+      <!-- Brand -->
+      <a href="#" class="text-xl font-bold text-100">Music Albums</a>
+      <!-- Links -->
+      <div class="flex list-none gap-4 pl-6 text-base">
+        <li>
+          <a
+            class="text-100"
+            href="#"
+            routerLink="/albums"
+            *ngIf="authService.getIsLoggedIn()"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            class="text-100"
+            href="#"
+            routerLink="/users"
+            *ngIf="authService.isAdmin()"
+          >
+            Users
+          </a>
+        </li>
+        <div class="text-100" style="cursor: pointer">
+          <p-overlayPanel #op>
+            <div class="flex flex-column gap-1">
+              <a
+                class="text-black-alpha-90"
+                href="#"
+                routerLink="/add-album"
+                *ngIf="authService.isAdmin()"
+              >
+                Add Album
+              </a>
+              <a
+                href="#"
+                routerLink="/searchByLabel"
+                class="text-black-alpha-90"
+              >
+                Search By Label
+              </a>
+              <a
+                href="#"
+                routerLink="/listeLabels"
+                *ngIf="authService.isAdmin()"
+                class="text-black-alpha-90"
+              >
+                Manage Labels
+              </a>
+            </div>
+          </p-overlayPanel>
+          <a (click)="op.toggle($event)" label="Browse"> Browse </a>
+        </div>
+      </div>
+      <div class="ml-auto">
+        <p-avatar
+          [label]="authService.LoggedUser[0]"
+          (click)="sidebarVisible = true"
+          size="normal"
+          [style]="{
+            'text-transform': 'uppercase',
+            color: 'black',
+            'background-color': '#ced4da',
+            cursor: 'pointer'
+          }"
+          shape="circle"
+        >
+        </p-avatar>
+
+        <p-sidebar [(visible)]="sidebarVisible" position="right">
+          <div class="flex flex-column">
+            <div class="flex justify-content-center align-items-center">
+              <p-avatar
+                [label]="authService.LoggedUser[0]"
+                size="xlarge"
+                shape="circle"
+                class="mb-2"
+                [style]="{
+                  'text-transform': 'uppercase',
+                  color: 'black',
+                  'background-color': '#ced4da'
+                }"
+              >
+              </p-avatar>
+            </div>
+
+            <span class="text-500 text-base text-center">
+              Logged in as {{ authService.LoggedUser }}
+            </span>
+          </div>
+
+          <div class="flex flex-column gap-1 mt-4">
+            <button
+              type="button"
+              (click)="onLogout()"
+              *ngIf="authService.getIsLoggedIn()"
+              class="btn btn-danger btn-block"
+            >
+              Logout
+            </button>
+          </div>
+        </p-sidebar>
+      </div>
+    </nav>
+  </body>
+</html>
+<router-outlet></router-outlet>

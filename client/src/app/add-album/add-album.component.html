@@ -1,0 +1,85 @@
+<div class="container mt-6">
+  <p-card header="Add an album" [style]="{ width: '75rem' }">
+    <div hidden>
+      <label>Album ID :</label>
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="newAlbum.idAlbum"
+        name="idAlbum"
+        style="width: 25rem"
+      />
+    </div>
+    <div class="mt-2 flex flex-column gap-1">
+      <label>Album Title :</label>
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="newAlbum.title"
+        name="title"
+        style="width: 25rem"
+      />
+    </div>
+    <div class="mt-2 flex flex-column gap-1">
+      <label>Artist :</label>
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="newAlbum.artist"
+        name="artist"
+        style="width: 25rem"
+      />
+    </div>
+    <div class="mt-2 flex flex-column gap-1">
+      <label>Release Date :</label>
+      <p-calendar
+        type="date"
+        [(ngModel)]="newAlbum.releaseDate"
+        name="releaseDate"
+        [style]="{ width: '25rem' }"
+      />
+    </div>
+    <div class="mt-2 flex flex-column gap-1">
+      <label>Genre :</label>
+      <input
+        pInputText
+        type="text"
+        [(ngModel)]="newAlbum.genre"
+        name="genre"
+        style="width: 25rem"
+      />
+    </div>
+    <div class="mt-2 flex flex-column gap-1">
+      <label>Label :</label>
+      <p-dropdown
+        [options]="labels"
+        [(ngModel)]="newLabelId"
+        optionLabel="labelName"
+        optionValue="idLabel"
+        name="idLab"
+        [style]="{ width: '25rem' }"
+        placeholder="Select a label"
+      ></p-dropdown>
+    </div>
+    <div class="mt-2 flex flex-column gap-1">
+      <label>Image :</label>
+      <input
+        type="file"
+        pInputText
+        (change)="onImageUpload($event)"
+        style="width: 25rem"
+      />
+    </div>
+
+    <div class="mt-2 flex flex-column gap-1">
+      <img
+        [src]="imagePath"
+        class="card-img-top img-fluid rounded-start w-25"
+      />
+    </div>
+
+    <div class="mt-5">
+      <p-button severity="info" (click)="addAlbum()"> Add Album </p-button>
+    </div>
+  </p-card>
+</div>

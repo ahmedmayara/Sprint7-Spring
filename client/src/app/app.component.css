@@ -1,0 +1,11 @@
+.bg-dark {
+    background-color: #1f2937 !important;
+}
+
+.dropdown-bg-dark {
+    background-color: #374151 !important;
+}
+
+.dropdown-item:hover {
+    color: black !important;
+}

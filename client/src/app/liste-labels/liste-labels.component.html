@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+        <app-update-label [label]="updatedLab" (labelUpdated)="labelUpdated($event)" [ajout]="ajout"></app-update-label>
+    </div>
+    <div class="card shadow mt-4 bg-dark">
+        <div class="card-body">
+            <table class="table table-striped text-white mt-4">
+                <thead>
+                    <tr>
+                        <th>Id :</th>
+                        <th>Label Name :</th>
+                        <th>Label Founder :</th>
+                        <th>Label Country :</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let lab of labels">
+                    <tr>
+                        <td>{{lab.idLabel}}</td>
+                        <td>{{lab.labelName}}</td>
+                        <td>{{lab.labelFounder}}</td>
+                        <td>{{lab.labelCountry}}</td>
+                        <td><button class="btn btn-success" (click)="updateLab(lab)">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

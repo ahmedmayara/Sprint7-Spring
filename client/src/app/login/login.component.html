@@ -1,0 +1,72 @@
+<div class="flex align-items-center justify-content-center h-screen">
+  <div class="card flex justify-content-center">
+    <p-dialog
+      header="Activate your account"
+      [(visible)]="isEnabled"
+      [style]="{ width: '30vw' }"
+    >
+      <p class="text-500 text-sm">
+        An activation code has been sent to your email address. Please enter the
+        code below.
+      </p>
+      <label for="code"> Activation Code </label>
+      <input
+        pInputText
+        id="activationCode"
+        [(ngModel)]="code"
+        class="w-full"
+        placeholder="Enter your activation code"
+      />
+
+      <p-button
+        [style]="{
+          width: '100%',
+          'justify-content': 'center',
+          'margin-top': '1rem'
+        }"
+        (click)="onActivate()"
+      >
+        Activate
+      </p-button>
+    </p-dialog>
+  </div>
+
+  <p-card header="Sign In" [style]="{ width: '30rem' }">
+    <div class="flex flex-column gap-1 mb-2">
+      <label htmlFor="username">Username</label>
+      <input
+        pInputText
+        id="username"
+        aria-describedby="username-help"
+        [(ngModel)]="user.username"
+      />
+    </div>
+
+    <div class="flex flex-column gap-1">
+      <label htmlFor="password">Password</label>
+      <input
+        pInputText
+        id="password"
+        type="password"
+        aria-describedby="password-help"
+        [(ngModel)]="user.password"
+      />
+    </div>
+
+    <div class="flex flex-column gap-1 mt-4">
+      <p-button
+        [style]="{ width: '100%', 'justify-content': 'center' }"
+        (click)="onLoggedIn()"
+      >
+        Sign in
+      </p-button>
+
+      <p class="text-center mt-4">
+        <span class="text-500">Don't have an account?</span>
+        <a routerLink="/register" class="underline font-medium text-primary"
+          >Sign up</a
+        >
+      </p>
+    </div>
+  </p-card>
+</div>

@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <div class="flex flex-column gap-1">
+    <label htmlFor="username">Username</label>
+    <input
+      pInputText
+      id="username"
+      type="username"
+      aria-describedby="username-help"
+      [(ngModel)]="user.username"
+      disabled="true"
+      class="mb-3"
+    />
+  </div>
+
+  <div class="flex flex-column gap-1">
+    <label for="currentRole">Current Roles</label>
+    <div class="flex flex-row gap-2" *ngFor="let role of user.roles">
+      <p-badge
+        severity="success"
+        [value]="role.role"
+        *ngIf="role.role === 'ADMIN'"
+      >
+      </p-badge>
+      <p-badge severity="info" [value]="role.role" *ngIf="role.role === 'USER'">
+      </p-badge>
+      <p-badge
+        value="Remove Role"
+        severity="danger"
+        [style]="{ cursor: 'pointer' }"
+        (click)="removeRoleFromUser(role.role_id)"
+      >
+      </p-badge>
+    </div>
+  </div>
+
+  <div class="flex flex-column gap-1 mt-3">
+    <label for="roleSelect">Select Role to Add</label>
+    <p-dropdown
+      [options]="roles"
+      [(ngModel)]="newRole"
+      optionLabel="role"
+      name="role"
+      [style]="{ width: '25rem' }"
+      placeholder="Select a role"
+    ></p-dropdown>
+  </div>
+
+  <div class="mt-4">
+    <p-button severity="info" (click)="addRoleToUser()">Add Role</p-button>
+  </div>
+</div>

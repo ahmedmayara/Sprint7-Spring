@@ -1,0 +1,84 @@
+<div class="flex align-items-center justify-content-center h-screen">
+  <div>
+    <p-message
+      severity="error"
+      [style]="{ width: '35rem', 'margin-bottom': '1.5rem' }"
+      *ngIf="passwordMismatchError"
+      text="Password and confirm password do not match."
+    >
+    </p-message>
+    <p-messages
+      [(value)]="messages"
+      [enableService]="false"
+      [style]="{ width: '35rem' }"
+      [closable]="true"
+    ></p-messages>
+    <p-card header="Sign Up" [style]="{ width: '35rem' }">
+      <div class="flex flex-column gap-1 mb-2">
+        <label htmlFor="username">Username</label>
+        <input
+          pInputText
+          id="username"
+          aria-describedby="username-help"
+          [(ngModel)]="user.username"
+        />
+      </div>
+
+      <div class="flex flex-column gap-1 mb-2">
+        <label htmlFor="email">Email</label>
+        <input
+          pInputText
+          id="email"
+          type="email"
+          aria-describedby="email-help"
+          [(ngModel)]="user.email"
+        />
+      </div>
+
+      <div class="flex flex-column gap-1 mb-2">
+        <label htmlFor="password">Password</label>
+        <input
+          pInputText
+          id="password"
+          type="password"
+          aria-describedby="password-help"
+          [(ngModel)]="user.password"
+        />
+      </div>
+
+      <div class="flex flex-column gap-1">
+        <label htmlFor="confirmPassword">Confirm Password</label>
+        <input
+          pInputText
+          id="confirmPassword"
+          type="password"
+          aria-describedby="confirmPassword-help"
+          [(ngModel)]="confirmPassword"
+        />
+      </div>
+
+      <div class="flex flex-column gap-1 mt-4">
+        <p-button
+          [style]="{ width: '100%', 'justify-content': 'center' }"
+          type="button"
+          (click)="register()"
+          [disabled]="isLoading"
+        >
+          <span *ngIf="!isLoading">Sign Up</span>
+          <i
+            class="pi pi-spin pi-spinner"
+            *ngIf="isLoading"
+            style="font-size: 1.5rem"
+          ></i>
+        </p-button>
+      </div>
+
+      <p class="text-center mt-4">
+        <span class="text-500">Already have an account?</span>
+        <a routerLink="/login" class="underline font-medium text-primary">
+          Sign in
+        </a>
+      </p>
+    </p-card>
+  </div>
+</div>

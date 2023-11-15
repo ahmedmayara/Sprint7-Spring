@@ -1,0 +1,23 @@
+<form>
+    <div [hidden]="ajout" class="mt-3">
+        <label>Label ID :</label>
+        <input readonly type="text" [(ngModel)]="label.idLabel" [value]="label.idLabel" name="idLabel" class="form-control w-25">
+    </div>
+    <div class="mt-3">
+        <label>Label Name :</label>
+        <input type="text" [(ngModel)]="label.labelName" [value]="label.labelName" name="labelName" class="form-control w-75">
+    </div>
+    <div class="mt-3">
+        <label>Label Founder :</label>
+        <input type="text" [(ngModel)]="label.labelFounder" [value]="label.labelFounder" name="labelFounder" class="form-control w-75">
+    </div>
+    <div class="mt-3">
+        <label>Label Country :</label>
+        <input type="text" [(ngModel)]="label.labelCountry" [value]="label.labelCountry" name="labelCountry" class="form-control w-75">
+    </div>
+    <div class="mt-2">
+        <button type="submit" [disabled]="!label.labelName" class="btn btn-info" (click)="saveLabel()">
+            {{ajout ? "Add" : "Update"}}
+        </button>
+    </div>
+</form>

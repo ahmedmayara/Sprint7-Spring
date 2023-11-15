@@ -1,0 +1,45 @@
+{
+  "name": "music-albums",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^16.2.10",
+    "@angular/common": "^16.2.10",
+    "@angular/compiler": "^16.2.10",
+    "@angular/core": "^16.2.10",
+    "@angular/forms": "^16.2.10",
+    "@angular/platform-browser": "^16.2.10",
+    "@angular/platform-browser-dynamic": "^16.2.10",
+    "@angular/router": "^16.2.10",
+    "@auth0/angular-jwt": "^5.1.2",
+    "bootstrap": "^4.5.3",
+    "bootstrap-avatar": "^1.3.1",
+    "jquery": "^3.6.1",
+    "primeflex": "^3.3.1",
+    "primeicons": "^6.0.1",
+    "primeng": "^16.0.1",
+    "rxjs": "^7.8.1",
+    "tslib": "^2.6.2",
+    "zone.js": "~0.13.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^16.2.7",
+    "@angular/cli": "~16.2.7",
+    "@angular/compiler-cli": "^16.2.10",
+    "@types/jasmine": "~4.0.0",
+    "jasmine-core": "~4.3.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.0.0",
+    "typescript": "~4.9.5"
+  }
+}

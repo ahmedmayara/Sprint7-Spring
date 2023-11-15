@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="col-sm-4 col-md-4 col-lg-4 mt-4">
+    <label for="idLab">Labels :</label>
+    <p-dropdown
+      [options]="labels"
+      [(ngModel)]="idLabel"
+      optionLabel="labelName"
+      optionValue="idLabel"
+      name="idLab"
+      [style]="{ width: '25rem', 'margin-bottom': '1.5rem' }"
+      placeholder="Select a label"
+      (onChange)="onChange()"
+    ></p-dropdown>
+  </div>
+  <p-table
+    styleClass="p-datatable-striped p-datatable-sm"
+    [value]="albums"
+    class="table table-striped text-white bg-dark"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>#</th>
+        <th>Album Title :</th>
+        <th>Artist Name :</th>
+        <th>Release Date :</th>
+        <th>Genre :</th>
+        <th>Label :</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-album>
+      <tr>
+        <td>{{ album.idAlbum }}</td>
+        <td>{{ album.title }}</td>
+        <td>{{ album.artist }}</td>
+        <td>{{ album.releaseDate | date : "yyyy/MM/dd" }}</td>
+        <td>{{ album.genre }}</td>
+        <td>{{ album.label.labelName }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
